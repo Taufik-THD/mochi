@@ -15,6 +15,9 @@
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "fs-extra": "^7.0.1",
+    "html-loader": "^0.5.5",
+    "markdown-loader": "^4.0.0",
+    "marked": "^0.5.2",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.14"

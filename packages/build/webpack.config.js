@@ -1,5 +1,7 @@
+const marked = require("marked")
 const path = require('path')
 const babelConfig = path.join(__dirname, '/.babelrc')
+const renderer = new marked.Renderer()
 
 module.exports = (development, target) => {
   return {
@@ -13,8 +15,19 @@ module.exports = (development, target) => {
       rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: `babel-loader?babelrc=false&extends=${babelConfig}`
-      }]
+        loader: path.resolve(__dirname, `node_modules/babel-loader?babelrc=false&extends=${babelConfig}`)
+      }, {
+        test: /\.md$/,
+        use: [{
+          loader: path.resolve(__dirname, 'node_modules/html-loader')
+        }, {
+          loader: path.resolve(__dirname, 'node_modules/markdown-loader'),
+          options: {
+            pedantic: true,
+            renderer
+          }
+        }]
+    }]
     }
   }
 }

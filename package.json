@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/muhibbudins/mochi#readme",
   "dependencies": {
-    "commander": "^2.19.0",
-    "rimraf": "^2.6.2"
+    "commander": "^2.19.0"
   }
 }
