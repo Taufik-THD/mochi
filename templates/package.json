@@ -1,0 +1,17 @@
+{
+  "name": "{#APP_NAME#}",
+  "version": "1.0.0",
+  "description": "{#APP_DESCRIPTION#}",
+  "main": "index.js",
+  "scripts": {
+    "dev": "../mochi/mochi.js build -d",
+    "build": "../mochi/mochi.js build -p",
+    "start": "../mochi/mochi.js serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mochijs": "^0.0.2"
+  }
+}

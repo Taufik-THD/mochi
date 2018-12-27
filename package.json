@@ -1,0 +1,23 @@
+{
+  "name": "mochijs",
+  "version": "0.0.2",
+  "description": "WIP",
+  "bin": {
+    "mochi" : "./mochi.js"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muhibbudins/mochi.git"
+  },
+  "keywords": [],
+  "author": "Muhibbudin Suretno",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/muhibbudins/mochi/issues"
+  },
+  "homepage": "https://github.com/muhibbudins/mochi#readme",
+  "dependencies": {
+    "commander": "^2.19.0"
+  }
+}
