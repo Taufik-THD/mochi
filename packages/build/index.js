@@ -2,7 +2,7 @@ const fs = require('fs-extra')
 const path = require('path')
 const rimraf = require('rimraf')
 const webpack = require('webpack')
-const defaultConfig = require('./webpack.config')
+const webpackConfig = require('./webpack.config')
 const webpackServer = require('webpack-dev-server')
 
 const print = (stats) => {
@@ -14,19 +14,11 @@ const print = (stats) => {
 module.exports = (development, source, target) => {
   const buildDirectory = path.resolve(target, '.mochi')
   const buildTemplate = path.resolve(__dirname, 'template')
-
-  const options = {
-    contentBase: buildTemplate,
-    hot: true,
-    host: 'localhost'
-  }
-
-  webpackServer.addDevServerEntrypoints(defaultConfig(development, target), options)
-
-  const compiler = webpack(defaultConfig(development, target))
+  const defaultConfig = webpackConfig(development, target)
+  const compiler = webpack(defaultConfig)
 
   if (development) {
-    const server = new webpackServer(compiler, options)
+    const server = new webpackServer(compiler, defaultConfig.devServer)
 
     compiler.watch({
       aggregateTimeout: 300,

@@ -11,6 +11,19 @@ module.exports = (development, target) => {
       path: path.resolve(target, './.mochi'),
       filename: 'build.js',
     },
+    devServer: {
+      contentBase: path.resolve(__dirname, 'template'),
+      host: 'localhost',
+      hot: true,
+      inline: false,
+      overlay: {
+        errors: true,
+        warnings: true,
+      },
+      port: 500,
+      stats: 'errors-only',
+      watchContentBase: true
+    },
     module: {
       rules: [{
         test: /\.js$/,
