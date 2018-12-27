@@ -1,5 +1,6 @@
 const fs = require('fs-extra')
 const path = require('path')
+const rimraf = require('rimraf')
 const webpack = require('webpack')
 const defaultConfig = require('./webpack.config')
 
@@ -14,9 +15,10 @@ module.exports = (development, source, target) => {
   const buildTemplate = path.resolve(__dirname, 'template')
 
   if (fs.pathExistsSync(buildDirectory)) {
-    fs.rmdirSync(buildDirectory)
-    fs.mkdirSync(buildDirectory)
-    fs.copyFileSync(buildTemplate, buildDirectory)
+    rimraf(buildDirectory,(error) => {
+      fs.mkdirSync(buildDirectory)
+      fs.copySync(buildTemplate, buildDirectory)
+    })
   }
 
   const compiler = webpack(defaultConfig(development, target))
