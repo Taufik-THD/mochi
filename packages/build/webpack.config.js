@@ -44,7 +44,14 @@ module.exports = (development, target) => {
             renderer
           }
         }]
-    }]
+      }, {
+        test: /\.?scss$/,
+        use: [
+          path.resolve(__dirname, 'node_modules/style-loader'),
+          path.resolve(__dirname, 'node_modules/css-loader'),
+          path.resolve(__dirname, 'node_modules/sass-loader')
+        ]
+      }]
     }
   }
 }
