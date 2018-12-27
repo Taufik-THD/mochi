@@ -1,7 +1,9 @@
 const marked = require("marked")
 const path = require('path')
+const webpack = require('webpack')
 const babelConfig = path.join(__dirname, '/.babelrc')
 const renderer = new marked.Renderer()
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = (development, target) => {
   return {
@@ -11,18 +13,20 @@ module.exports = (development, target) => {
       path: path.resolve(target, './.mochi'),
       filename: 'build.js',
     },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, 'template/index.html')
+      }),
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin()
+    ],
     devServer: {
-      contentBase: path.resolve(__dirname, 'template'),
-      host: 'localhost',
+      contentBase: path.resolve(__dirname, 'template/index.html'),
       hot: true,
-      inline: false,
-      overlay: {
-        errors: true,
-        warnings: true,
-      },
-      port: 500,
-      stats: 'errors-only',
-      watchContentBase: true
+      open: true,
+      inline: true,
+      watchContentBase: true,
+      stats: 'errors-only'
     },
     module: {
       rules: [{
