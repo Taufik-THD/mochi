@@ -45,7 +45,7 @@ module.exports = (development, target) => {
           }
         }]
       }, {
-        test: /\.?scss$/,
+        test: /\.s?[c|a]ss$/,
         use: [
           path.resolve(__dirname, 'node_modules/style-loader'),
           path.resolve(__dirname, 'node_modules/css-loader'),
