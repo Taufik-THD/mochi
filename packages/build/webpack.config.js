@@ -5,10 +5,14 @@ const babelConfig = path.join(__dirname, '/.babelrc')
 const renderer = new marked.Renderer()
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = (development, target) => {
+module.exports = (development, target, url) => {
   return {
     mode: development ? 'development' : 'production',
-    entry: path.resolve(target, './src/index.js'),
+    entry: [
+      `webpack-dev-server/client?${url}`,
+      'webpack/hot/dev-server',
+      path.resolve(target, './src/index.js')
+    ],
     output: {
       path: path.resolve(target, './.mochi'),
       filename: 'build.js',
@@ -21,11 +25,8 @@ module.exports = (development, target) => {
       new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-      contentBase: path.resolve(__dirname, 'template/index.html'),
+      contentBase: path.resolve(__dirname, 'template'),
       hot: true,
-      open: true,
-      inline: true,
-      watchContentBase: true,
       stats: 'errors-only'
     },
     module: {
