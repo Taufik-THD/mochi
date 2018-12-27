@@ -16,6 +16,16 @@ module.exports = (development, target) => {
       path: path.resolve(target, './.mochi'),
       filename: 'build.js',
     },
+    resolve: {
+      alias: {
+        assets: path.resolve(target, 'assets/'),
+        components: path.resolve(target, 'components/'),
+        src: path.resolve(target, 'src/'),
+        pages: path.resolve(target, 'src/pages/'),
+        static: path.resolve(target, 'static/'),
+        root: path.resolve(target, '/')
+      }
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, 'template/index.html')
