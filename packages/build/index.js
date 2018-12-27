@@ -59,12 +59,13 @@ module.exports = (development, source, target) => {
       })
     })
   } else {
-    fs.copySync(buildTemplate, buildDirectory)
+    // Disable build function for testing
+    // fs.copySync(buildTemplate, buildDirectory)
 
-    compiler.run((err, stats) => {
-      console.log(stats.toString({
-        colors: true
-      }))
-    })
+    // compiler.run((err, stats) => {
+    //   console.log(stats.toString({
+    //     colors: true
+    //   }))
+    // })
   }
 }
