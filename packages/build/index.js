@@ -3,32 +3,7 @@ const path = require('path')
 const rimraf = require('rimraf')
 const webpack = require('webpack')
 const defaultConfig = require('./webpack.config')
-
-const build = (development, target, buildTemplate, buildDirectory) => {
-  fs.mkdirSync(buildDirectory)
-  fs.copySync(buildTemplate, buildDirectory)
-
-  const compiler = webpack(defaultConfig(development, target))
-
-  if (development) {
-    const buildDevelopment = compiler.watch({
-      aggregateTimeout: 300,
-      poll: undefined
-    }, (err, stats) => {
-      if (err) {
-        buildDevelopment.close(() => {
-          console.log('Watching Ended')
-        })
-      }
-
-      print(stats)
-    })
-  } else {
-    compiler.run((err, stats) => {
-      print(stats)
-    })
-  }
-}
+const webpackServer = require('webpack-dev-server')
 
 const print = (stats) => {
   console.log(stats.toString({
@@ -40,11 +15,32 @@ module.exports = (development, source, target) => {
   const buildDirectory = path.resolve(target, '.mochi')
   const buildTemplate = path.resolve(__dirname, 'template')
 
-  if (fs.pathExistsSync(buildDirectory)) {
-    rimraf(buildDirectory,(error) => {
-      build(development, target, buildTemplate, buildDirectory)
+  const options = {
+    contentBase: buildTemplate,
+    hot: true,
+    host: 'localhost'
+  }
+
+  webpackServer.addDevServerEntrypoints(defaultConfig(development, target), options)
+
+  const compiler = webpack(defaultConfig(development, target))
+
+  if (development) {
+    const server = new webpackServer(compiler, options)
+
+    compiler.watch({
+      aggregateTimeout: 300,
+      poll: undefined
+    }, (err, stats) => {
+      server.listen(5000, 'localhost', () => {
+        console.log('dev server listening on port 5000');
+      })
     })
   } else {
-    build(development, target, buildTemplate, buildDirectory)
+    fs.copySync(buildTemplate, buildDirectory)
+
+    compiler.run((err, stats) => {
+      print(stats)
+    })
   }
 }

@@ -16,6 +16,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "fs-extra": "^7.0.1",
     "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
   }
 }
