@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/muhibbudins/mochi#readme",
   "dependencies": {
-    "commander": "^2.19.0"
+    "commander": "^2.19.0",
+    "consola": "^2.3.0"
   }
 }

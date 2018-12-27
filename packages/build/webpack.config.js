@@ -5,11 +5,10 @@ const babelConfig = path.join(__dirname, '/.babelrc')
 const renderer = new marked.Renderer()
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-module.exports = (development, target, url) => {
+module.exports = (development, target) => {
   return {
     mode: development ? 'development' : 'production',
     entry: [
-      `webpack-dev-server/client?${url}`,
       'webpack/hot/dev-server',
       path.resolve(target, './src/index.js')
     ],

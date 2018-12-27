@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+const fs      = require('fs')
+const path    = require('path')
+const consola = require('consola')
 const program = require('commander')
 const create  = require('./packages/create/index')
 const serve   = require('./packages/serve/index')
@@ -23,6 +26,10 @@ program
   .command('build')
   .option('-d, --development', 'Development build')
   .action(program => {
+    if (!fs.existsSync(path.resolve(target, 'mochi.config.js'))) {
+      consola.error('Mochi config is not define, please run mochi on valid directory.')
+      process.exit(0)
+    }
     return build(program.development, source, target)
   })
 
