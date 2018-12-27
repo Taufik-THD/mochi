@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack -d --watch"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,9 @@
     "@babel/preset-env": "^7.2.3",
     "babel-loader": "^8.0.4",
     "babel-plugin-transform-react-jsx": "^6.24.1"
+  },
+  "dependencies": {
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
   }
 }
