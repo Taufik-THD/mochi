@@ -43,9 +43,10 @@ module.exports = (development, source, target) => {
   )
 
   const compiler = webpack(config)
-  const server = new webpackServer(compiler, config.devServer)
 
   if (development) {
+    const server = new webpackServer(compiler, config.devServer)
+
     compiler.watch({
       aggregateTimeout: 300,
       poll: undefined
