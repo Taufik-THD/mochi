@@ -17,7 +17,7 @@ But, soon Mochi also possible to integrate with another Frontend Framework (ex. 
 - [x] SASS / SCSS Transpiling
 - [x] Bootstrap 4 Adapter
 - [x] Extendable Webpack Config
-- [x] Meta Tags
+- [ ] Dynamic Meta Tags
 - [ ] Static Site Generator
 - [ ] GraphQL Adapter
 - [ ] Server Side Rendering
