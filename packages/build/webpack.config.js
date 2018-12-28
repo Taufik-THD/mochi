@@ -40,8 +40,8 @@ module.exports = (development, target) => {
     },
     module: {
       rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
+        test: /\.jsx?$/,
+        exclude: /node_modules(?!\/mochi-router)/,
         loader: path.resolve(__dirname, `node_modules/babel-loader?babelrc=false&extends=${babelConfig}`)
       }, {
         test: /\.md$/,
